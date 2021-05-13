@@ -3,20 +3,20 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
     name: {
         type: String,
-        maxLength: 50
+        maxlength: 50
     },
     email: {
         type: String,
         trim: true,
-        unique: ture
+        unique: true
     },
     password: {
         type: String,
-        maxLength: 5
+        minlength: 5
     },
     lastname: {
         type: String,
-        maxLenght: 50
+        maxlenght: 50
     },
     role: {
         type: Number,
@@ -27,6 +27,6 @@ const userSchema = mongoose.Schema({
     tockenExp: Number
 });
 
-const User = mongoose.Model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = {User};
