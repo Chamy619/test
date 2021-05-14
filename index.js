@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const port = 5000;
 
+const config = require('./config/key.js');
+
 const bodyParser = require('body-parser');
 const {User} = require('./models/User.js');
 
@@ -9,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://Chamy:aa9506@wiki.phe87.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
