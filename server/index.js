@@ -4,11 +4,13 @@ const port = 5000;
 
 const config = require('./config/key.js');
 
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const {User} = require('./models/User.js');
 const {auth} = require('./middleware/auth.js');
 
+app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -19,7 +21,13 @@ mongoose.connect(config.mongoURI, {
 }).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
+// test
+app.get('/api/hello', (req, res) => {
+  res.send('Hi~');
+});
+
 app.get('/', (req,res,next) => {
+  console.log('요청들어왔음');
     res.send('Hello World!');
 });
 
