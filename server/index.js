@@ -68,11 +68,10 @@ app.post('/api/user/login', (req, res) => {
         if (err) {
           return res.status(400).send(err);
         }
-
-        // 토큰을 로컬스토리지에 저장
-        res.cookie('x_auth', user.token)
-          .status(200)
-          .json({loginSuccess: true, userId: user._id});
+        
+        // 로그인 사용자 정보를 전송
+        res.status(200)
+          .json({loginSuccess: true, userId: user._id, token: user.token});
       });
     });
   });
