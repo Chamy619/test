@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react'
-import axios from 'axios';
+import {useDispatch} from 'react-redux';
+import {logoutUser} from '../../../_actions/user_action.js';
+import {withRouter} from 'react-router-dom';
 
 const landingStyle = {
     display: 'flex',
@@ -10,19 +12,16 @@ const landingStyle = {
 }
 
 function LandingPage(props) {
-    useEffect(() => {
-        axios.get('http://localhost:5000/api/hello')
-            .then(console.log);
-    }, []);
+    const dispatch = useDispatch();
 
     const onClickHandler = () => {
         const token = JSON.parse(localStorage.getItem('user_token'));
-        axios.get(`http://localhost:5000/api/user/logout?token=${token}`)
+        dispatch(logoutUser(token))
             .then(response => {
-                if (response.data.success) {
+                if (response.payload.success) {
                     props.history.push('/login');
                 } else {
-                    alert('로그아웃 하는데 실패했습니다.');
+                    alert('로그아웃에 실패했습니다.');
                 }
             });
     }
@@ -37,4 +36,4 @@ function LandingPage(props) {
     );
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);

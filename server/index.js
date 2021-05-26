@@ -27,7 +27,6 @@ app.get('/api/hello', (req, res) => {
 });
 
 app.get('/', (req,res,next) => {
-  console.log('요청들어왔음');
     res.send('Hello World!');
 });
 

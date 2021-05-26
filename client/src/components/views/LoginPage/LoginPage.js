@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import {loginUser} from '../../../_actions/user_action.js';
+import {withRouter} from 'react-router-dom';
 
 const loginStyle = {
     display: 'flex',
@@ -63,4 +64,4 @@ function LoginPage(props) {
     );
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
